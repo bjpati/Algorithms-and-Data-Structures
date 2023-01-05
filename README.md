@@ -1,3 +1,6 @@
+# Algorithms and Data Structures
+A basic course in computer science, that will give prerequisites for several advanced courses in computer science. The course will cover both theory on algorithms and data structures as well as practical software design.
+
 ## Course contents
 Basic algorithm analysis:
 * Simpler analysis with respect to the resource needs of algorithms in the form of time and memory.
