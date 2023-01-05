@@ -1,0 +1,153 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{minted}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+
+\begin{document}
+\title{
+    \textbf{Linked lists}
+}
+\author{Bashar Jamal Pati}
+\date{Spring Fall 2022}
+
+\maketitle
+
+\section*{Introduction}
+
+Linked lists are one of the types of data structures that are built using, among other things, nodes. Linked lists are not stored in one and the same place as arrays are, however linked lists are and as is clear from the name they link the elements with each other using a pointer. In addition, each node stores the data and the address of the node that is behind. \\
+
+Linked lists have both advantages and disadvantages, where advantages can be, among other things, that the linked lists use dynamic arrays, that is, the list can be larger or smaller depending on the number of elements in the list. In addition, linked lists are easier to remove or insert elements in different places in the list. However, linked lists have disadvantages when it comes to time complexity where, among other things, to reach an element in a random location, the element must be accessed by searching all elements from the first element to the element that we are searching for. Another disadvantage is that linked lists take up a lot of memory because a pointer is needed with each element of the list.\\
+
+Furthermore, linked lists have three different types that have different properties and different functionality:
+\begin{enumerate}
+\item \textbf{Simple Linked List:} This type of linked list is a bit simple and limited compared to the other two types. This type can be moved to another location or searched in the linked list on a simple path, i.e. only one direction.
+\item \textbf{Doubly linked list:} This type has a little more functionality compared to the previous one because this type of list can be moved to another location or searched in the list in both directions, that is from head to tail and vice versa.
+\item \textbf{Circular linked list:} This type is more used because this type has more functionality where the last element is linked to the first element also the first element is linked to the last. In this way, all elements can be reached faster and in both directions.
+\end{enumerate}
+
+\section*{A linked list}
+Linked lists can be defined as collections of elements that are randomly stored in memory. Linked lists can be represented by a pointer that points to the first element of the list. Each element has a "head" which is the beginning of the list, and the end of the element is called the "tail". If the linked list is empty then "tail" points to null. Furthermore, each element contains two parts, the first is the data object itself, which can contain integers or strings, etc. While the second part is a reference that points to the next element in the list. See the code below for more clarity.\\
+\begin{minted}{java}
+ public class LinkedList {
+    int head;
+    LinkedList tail;
+    public LinkedList(int item, LinkedList list) {
+        head = item;
+        tail = list;
+    }
+    public int head() {
+        return this.head;
+    }
+    public LinkedList tail() {
+        return this.tail;
+    }
+\end{minted}
+
+\section*{Benchmarks}
+In this task, the main thing is that we test the time complexity of linked lists. In addition, a comparison is made between linked lists and arrays to see which of them has the best case in terms of time complexity. The method that is important to check in this benchmark is \textit{append()}, see the code below:
+\begin{minted}{java}
+  public void append(LinkedList b) {
+        long t0 = System.nanoTime();
+        LinkedList nxt = this;
+        while (nxt.tail != null) {
+            nxt = nxt.tail;
+        }
+        nxt.tail = b;
+        long t1 = System.nanoTime();
+        System.out.println(" resolution: " + (t1 - t0) + " nanoseconds");
+    }
+\end{minted}
+From the code above we see that through a while loop we search through the entire list \textit{\textbf{a}} until it finds tail, so that it then starts linking the second list \textit{\textbf{b}} with the first list \textit{\textbf{a}}. Time complexity is calculated in this case in two different ways. First, we let first list \textit{\textbf{a}} have a constant length while second list \textit{\textbf{b}} has dynamic size. When the first tests are done by appending list \textit{\textbf{a}} to list \textit{\textbf{b}}, we notice that it happens quickly because the first list \textit{\textbf{a}} has a constant length and as soon as it finds its \textit{tail} then both lists connect with each other. See Table 1 for more clarity.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{a size} & \textbf{b size} & \textbf{run time [us]}\\
+\hline
+    100     &     100     &       1.9\\
+    100     &     1000     &       2.5\\
+    100     &     10000     &       3.2\\
+    100     &     100000     &       7.8\\
+\end{tabular}
+\caption{Linked lists size(a,b), runtime in microseconds}
+\label{tab:table1}
+\end{center}
+\end{table}
+
+Second, the opposite is done, i.e. let list \textit{\textbf{a}} be dynamic while the other list \textit{\textbf{b}} is constant. In this case, we notice that time is running out and need more time to do the entire execution. This is because now list \textit{\textbf{a}} increases and then \textit{append()} needs first to look for where is the last element that is \textit{tail} and then connect both lists. See table 2.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{a size} & \textbf{b size} & \textbf{run time [us]}\\
+\hline
+    100     &     100     &       2.3\\
+    1000     &     100     &       13.2\\
+    10000     &     100     &       130\\
+    100000     &     100     &       1420\\
+\end{tabular}
+\caption{Linked lists size(a,b), runtime in microseconds}
+\label{tab:table1}
+\end{center}
+\end{table}
+
+Furthermore, the same benchmark is also done in \textit{append()}, but in this case through an array to be able to compare with linked list. The \textit{append()} will contain two arrays as parameters and a third array to copy the elements found in the two arrays to the third. Through two while loops that go through \textit{\textbf{arr1}} and \textit{\textbf{arr2}} then they copy elements and finally they connect and put it in \textit{\textbf{arr3}}. See the code below.
+\begin{minted}{java}
+public static int[] append2(int[] arr1, int[] arr2){
+        long t0 = System.nanoTime();
+        int[] arr3 = new int[arr1.length + arr2.length];
+        int i = 0;
+        while (i < arr1.length)
+        {
+            arr3[i] = arr1[i];
+            i++;
+        }
+        int pos = arr1.length;
+        int j = 0;
+        while (pos < arr3.length)
+        {
+            arr3[pos] = arr2[j];
+            j++;
+            i++;
+        }
+        long t1 = System.nanoTime();
+        System.out.println(" resolution: " + (t1 - t0) + " nanoseconds");
+        return arr3;
+    }
+\end{minted}
+
+The same benchmark as in linked lists is done here as well. Where we one array that is constant while the other is dynamic and vice versa. We note here that arrays take longer because it first needs to copy all the elements that are in first array \textit{\textbf{arr1}} and second array \textit{\textbf{arr2}}, then put them in third array \textit{\textbf{arr3}}. See Table 3 and 4 for more clarity.\\\\
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{arr1 size} & \textbf{arr2 size} & \textbf{run time [us]}\\
+\hline
+    100     &     100     &       5.3\\
+    100     &     1000     &       48\\
+    100     &     10000     &       231\\
+    100     &     100000     &       2153\\
+\end{tabular}
+\caption{arrays size(arr1, arr2), runtime in microseconds}
+\label{tab:table1}
+\end{center}
+\end{table}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{arr1 size} & \textbf{arr2 size} & \textbf{run time [us]}\\
+\hline
+    100     &     100     &       10.2\\
+    1000     &     100     &       89\\
+    10000     &     100     &       351\\
+    100000     &     100     &       3130\\
+\end{tabular}
+\caption{arrays size(arr1, arr2), runtime in microseconds}
+\label{tab:table1}
+\end{center}
+\end{table}
+\subsection*{Result}
+After all the benchmarks that were done in the previous exploration, we can then have a conclusion that linked lists are faster when performing operations such as \textit{append()}, while arrays take longer to be able to perform any operation. Also, time complexity of linked lists when we want to add an element is \textit{\textbf{O(1)}} because it is added at the beginning. In contrast, arrays have time complexity \textit{\textbf{O(N)}} because it is necessary to shift all elements since elements are added at the beginning. Another difference is that arrays are easier to implement compared to linked lists. Also, linked lists are dynamic while arrays are static because once we've determined the size of the array, we won't be able to change it. Finally memory usage is inefficient in array because we have an array with 4 locations but we use only 2 then the remaining locations will not be used. Whereas in linked lists memory usage is efficient as memory can be allocated or deallocated during the execution of the code.\\
+
+\section*{A stack}
+In this task we will compare functionality of stack and array based on linked lists. The main idea of the whole task is again to see time complexity and which of the mentioned is faster. As in the previous assignment in the course, we implemented a dynamic stack that increases with the number of elements added to the stack. In addition, the two main methods of the stack \textit{push()} and \textit{pop()} are used to add and remove from the stack. The stack works in the same way as linked lists where each element is dependent on the next element. Therefore, it becomes easy to add/remove elements in the stack and time complexity in both \textit{push()} and \textit{pop()} becomes \textit{\textbf{O(1)}}. Unlike the stack, the array takes more time to add or remove elements because in the array it will need an extra array to copy to and then shift all of them one step. This makes the time complexity to be \textit{\textbf{O(N)}} as need to visit all elements.\\
+
+\end{document}
