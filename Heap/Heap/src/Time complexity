@@ -1,0 +1,33 @@
+Heap with linked list
+Insert time complexity
+
+when 10 elements       1186750
+when 100 elements      3683708
+when 1000 elements     9335750
+when 10000 elements    55817792
+when 100000 elements   75741167
+
+Delet time complexity
+
+when 10 elements       10333
+when 100 elements      13208
+when 1000 elements     15625
+when 10000 elements    18167
+when 100000 elements   19183
+---------------------------------------------------
+Heap with array
+bubble time complexity
+
+when 10 elements       82208
+when 100 elements      116167
+when 1000 elements     1261334
+when 10000 elements    3502083
+when 100000 elements   5758800
+
+sink time complexity
+
+when 10 elements       235405
+when 100 elements      650813
+when 1000 elements     1863895
+when 10000 elements    8184292
+when 100000 elements   10636666
