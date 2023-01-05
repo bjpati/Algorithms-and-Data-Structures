@@ -1,0 +1,36 @@
+First code:
+ resolution 250 nanoseconds
+ resolution 166 nanoseconds
+ resolution 125 nanoseconds
+ resolution 84 nanoseconds
+ resolution 41 nanoseconds
+ resolution 0 nanoseconds
+ resolution 83 nanoseconds
+ resolution 83 nanoseconds
+ resolution 41 nanoseconds
+ resolution 0 nanoseconds
+ The average is 87
+///////////////////////////////////////////////////
+Seconde code
+resolution 500 nanoseconds
+ resolution 750 nanoseconds
+ resolution 166 nanoseconds
+ resolution 250 nanoseconds
+ resolution 83 nanoseconds
+ resolution 84 nanoseconds
+ resolution 83 nanoseconds
+ resolution 167 nanoseconds
+ resolution 42 nanoseconds
+ resolution 42 nanoseconds
+ The average is 216
+////////////////////////////////////////////////////
+The average with random read when n=10, get 1141
+The average with random read when n=100, get 963
+The average with random read when n=1000, get 443
+The average with random read when n=1000000, get 31
+///////////////////////////////////////////////////
+task1 when n = 10 it take about 1.53ns
+      when n = 100 it take about 0.450ns
+      when n = 1000 it take about 0.356ns
+      when n = 10000 it take about 0.333ns
+      when n = 100000 it take about 0.254ns

@@ -1,0 +1,25 @@
+
+when int n = 10;
+     int m = n;
+     int k = 100;
+     the time is 474748ns
+
+when int n = 100;
+     int m = n;
+     int k = 100;
+     the time is 8984001ns
+
+when int n = 1000;
+     int m = n;
+     int k = 100;
+     the time is 85894752ns
+
+when int n = 10000;
+     int m = n;
+     int k = 100;
+     the time is 4554554713ns
+
+when int n = 100000;
+     int m = n;
+     int k = 100;
+     the time is 11053693508476ns

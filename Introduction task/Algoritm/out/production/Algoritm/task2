@@ -1,0 +1,58 @@
+//Code 5//
+
+when int n = 10;
+     int m = n*2;
+     int k = 100;
+     the time is 347041ns
+
+when int n = 100;
+     int m = n*2;
+     int k = 100;
+     the time is 8254375ns
+
+when int n = 1000;
+     int m = n*2;
+     int k = 100;
+     the time is 52863625ns
+
+when int n = 10000;
+     int m = n*2;
+     int k = 100;
+     the time is 3485892250ns
+
+when int n = 100000;
+     int m = n*2;
+     int k = 100;
+     the time is 86844702791553ns
+
+
+
+//Code 6//
+when int n = 10;
+     int m = n*2;
+     int k = 100;
+     the time is 549953ns
+
+when int n = 100;
+     int m = n*2;
+     int k = 100;
+     the time is 6810916ns
+
+when int n = 1000;
+     int m = n*2;
+     int k = 100;
+     the time is 76663874ns
+
+when int n = 10000;
+     int m = n*2;
+     int k = 100;
+     the time is 3849182543ns
+
+when int n = 100000;
+     int m = n*2;
+     int k = 100;
+     the time is 9581386795542ns
+
+
+
+93579664
